@@ -155,7 +155,9 @@ parts:
     build-packages:
     - build-essential
     - help2man
+    - rsync
     - texinfo
+    - wget
 
     override-pull: |
       set \
