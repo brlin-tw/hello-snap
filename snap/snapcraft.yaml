@@ -126,7 +126,7 @@ parts:
   # Updated version of git for the --recommend-shallow support in the git-submodule command
   git:
     plugin: nil
-    override-pull: |
+    override-stage: |
       set -o errexit
       sudo add-apt-repository ppa:git-core/ppa
       sudo apt update
