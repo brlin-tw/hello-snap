@@ -155,6 +155,7 @@ parts:
     build-packages:
     - build-essential
     - help2man
+    - texinfo
 
     override-pull: |
       set \
