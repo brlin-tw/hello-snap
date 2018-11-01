@@ -134,10 +134,10 @@ parts:
 
     override-stage: |
       set -o errexit
-      sudo apt install software-properties-common
-      sudo add-apt-repository ppa:git-core/ppa
+      sudo apt install --assume-yes software-properties-common
+      sudo add-apt-repository --yes ppa:git-core/ppa
       sudo apt update
-      sudo apt install git-core
+      sudo apt install --assume-yes git-core
 
   hello:
     after:
