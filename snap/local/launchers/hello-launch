@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This is a launcher for the GNU Hello snap, currently it simply launches the next given command
+# This launcher can be handy if you need to do some stuff before running the snapped application, like display a deprecation notice dialog or message
+# 林博仁(Buo-ren, Lin) <Buo.Ren.Lin@gmail.com> © 2018
+
+set \
+	-o errexit \
+	-o errtrace \
+	-o nounset \
+	-o pipefail
+
+exec "${@}"

@@ -1,52 +1,59 @@
 %YAML 1.1
 ---
-# Snapcraft Recipe for [Project]
+# Snapcraft Recipe for GNU Hello
 # ------------------------------
 # This file is in the YAML data serialization format:
 # http://yaml.org
 # For the spec. of writing this file refer the following documentation:
 # * Snapcraft.yaml reference
-#   https://forum.snapcraft.io/t/snapcraft-yaml-reference/4276
+#   https://docs.snapcraft.io/snapcraft-yaml-reference/4276
 # * The snapcraft syntax
 #   https://docs.snapcraft.io/build-snaps/syntax
 # * Snap Docs
-#   https://snapdocs.labix.org
+#   https://docs.snapcraft.io
 # * Latest doc topics in the Snapcraft Forum
 #   https://forum.snapcraft.io/c/doc
 # For support refer to the snapcraft section in the Snapcraft Forum:
 # https://forum.snapcraft.io/c/snapcraft
 
-# All following comments, including this one, are designed to be stripped
-# before contributing the recipe to the upstream
-
-# my-awesome-app, my-app-name, my-app-command, my-app-launch, my-app-part
-# are placeholders text meant to be replaced by appropriate content
-
-name: my-awesome-app
-summary: Single-line elevator pitch for your amazing snap under 79 chars.
+name: hello-snapcrafters
+summary: A familiar, friendly greeting(also a demonstration of snap packaging)
 description: |
-  This is my-awesome-app's description. You have a paragraph or two to tell
-  the most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+  The GNU Hello program produces a familiar, friendly greeting. Yes, this is another implementation of the classic program that prints “Hello, world!” when you run it.
+
+  However, unlike the minimal version often seen, GNU Hello processes its argument list to modify its behavior, supports greetings in many languages, and so on. The primary purpose of GNU Hello is to demonstrate how to write other programs that do these things; it serves as a model for GNU coding standards and GNU maintainer practices.
+
+  This snap is also a demonstration of snap packaging, to get started please refer the following ubuntu tutorial:
+
+    Create your first snap | Ubuntu tutorials
+    https://tutorials.ubuntu.com/tutorial/create-your-first-snap
+
+  For any questions regarding of the implementation or using this snap, refer to the Snapcraft Forum:
+
+    https://forum.snapcraft.io/
 
 # The path of icon to represent the snap, relative to the source tree directory
 # Only PNG or SVG image is supported, dimension must be greater than 256x256px
-icon: snap/gui/my-awesome-app.png
+icon: snap/gui/hello-snapcrafters.png
 
 # Version string just for humans, typically '1.2+git' or '1.3.2'
 # The wrapping single quotes are often required to avoid the version string
 # being accidentally interpreted as a YAML non-string(like '1', '1.2').
 # http://yaml.org/type
 # https://arp242.net/weblog/yaml_probably_not_so_great_after_all.html#surprising-behaviour
-version: determined-by-version-script
+# NOTE: If `version` and `adopt-info` key co-exist, the `version` key takes precedence
+#version: determined-by-adopt-info
 
 # (OPTIONAL) The version string can also be dynamically determined via scripting
 # , in this case the value of the `version` key will be ignored (but the key is
 # still required).
 # NOTE: The resulting version string cannot be longer than 32 characters
-version-script: ./snap/local/utilities/set-snap-version.bash
+#version-script: ./snap/local/utilities/set-snap-version.bash
 #version-script: git -C parts/my-app-part/src describe --always --dirty --tags
+
+# Extracting information from sources in snapcraft parts - doc
+# https://forum.snapcraft.io/t/extracting-information-from-sources-in-snapcraft-parts/4642
+adopt-info: hello
 
 # Security confinement
 # Use `devmode` to getting started
@@ -62,17 +69,17 @@ grade: stable
 
 # Refer the following documentation for asserting interface plugs and slots in a security confined snap:
 # Interface management - doc - snapcraft.io
-# https://forum.snapcraft.io/t/interfaces/6154
+# https://docs.snapcraft.io/interface-management/6154
 # Supported interfaces - doc - snapcraft.io
-# https://forum.snapcraft.io/t/supported-interfaces/7744
+# https://docs.snapcraft.io/supported-interfaces/7744
 # Non-A/C: Non-autoconnect interface
-plugs:
+#plugs:
   # For snaps with a graphical user interface:
-  desktop:
-  desktop-legacy:
-  x11:
-  unity7:
-  wayland:
+  #desktop:
+  #desktop-legacy:
+  #x11:
+  #unity7:
+  #wayland:
 
   # Storage access
   #home:
@@ -88,20 +95,22 @@ plugs:
 # with `_snap_name_` or `snap run _snap_name_` commands, otherwise it can only be run
 # via `_snap_name_._app_name_` or `snap run _snap_name_._app_name_`
 apps:
-  my-app-name:
+  hello-snapcrafters:
     # The command to run the application, the base command should be an *relative path* to an executable file rooted from the `prime` directory (for `classic` confinement compatiblity, where command search PATHs under $SNAP isn't set for library compatiblity reasons).  The arguments are usually other launchers' *absolute path* rooted from the $SNAP environment variable that are *stacked over* previous ones to consolidate their runtime environment modifications.
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
     command: >
-      bin/my-awesome-app-launch
+      bin/hello-launch
+      "$SNAP"/bin/hello-snapcrafters
+
     # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
     # If the packaging target doesn't provide a desktop entry, ignore the `desktop` key and implement a desktop entry in `/snap/gui`
-    #desktop: share/applications/my-app-name.desktop
+    #desktop: share/applications/hello.desktop
 
 # Run `snapcraft help sources` for supported keywords on pulling a part's source ingredients
 # Run `snapcraft plugins` for supported build helper plugins
 # Run `snapcraft help plugins` for supported keywords on building a part
 # For `override-*` scriptlets used to modify behavior of certain part's lifecycle phase, check out:
-# https://forum.snapcraft.io/t/scriptlets/4892
+# https://docs.snapcraft.io/scriptlets/4892
 parts:
   # Assets from the snap packaging, refer each READMEs under the `snap` folder for more information
   assets:
@@ -114,32 +123,61 @@ parts:
     - -utilities
     - -patches
 
-  # Remote part for support of various desktop technologies
-  # Refer: https://github.com/ubuntu/snapcraft-desktop-helpers/blob/master/snapcraft.yaml
-  desktop-gtk3: # for yad
-
-  # Optional auxiliary part for displaying simple dialogs for better user experience, powered by the Yet Another Dialog
-  yad:
+  # Updated version of git for the --recommend-shallow support in the git-submodule command
+  git:
     plugin: nil
-    stage-packages:
-    - yad
+    override-pull: |
+      set -o errexit
+      sudo add-apt-repository ppa:git-core/ppa
+      sudo apt update
+      sudo apt install git-core
 
-  my-app-part:
+  hello:
     after:
-    - assets # for /snap/local/utilities/patch-desktop-entries
+    - assets
+    - git
 
-    #source:
+    source: git://git.savannah.gnu.org/hello.git
+    #source: http://ftpmirror.gnu.org/hello/hello-2.10.tar.gz
+
     #source-type:
     #source-tag:
-    #source-depth:
+    source-depth: 50
 
-    plugin: nil
+    plugin: autotools
+    build-packages:
+    - build-essential
+    - help2man
 
-    override-stage: |
+    override-pull: |
       set \
         -o errexit \
         -o nounset
 
-      snapcraftctl stage
+      #DISABLED: Git submodule pulls down too much history, re-implement the pull step until the submodule fetch depth is customizable
+      #snapcraftctl pull
 
-      utilities/patch-desktop-entries.bash
+      git clone \
+        --depth=50 \
+        git://git.savannah.gnu.org/hello.git \
+        "${SNAPCRAFT_PART_SRC}"
+
+      # gnulib submodule has a LOT of history, use the --recommend-shallow featue of git-submodule to avoid pulling all of the history:
+      # DISABLED: Unfortunately the git server doesn't allow it: error: Server does not allow request for unadvertised object
+      #git config \
+        #--file .gitmodules \
+        #submodule.gnulib.shallow \
+        #true
+
+      git submodule init
+
+      # Currently gnulib has about 1050 revisions to the submodule pinned commit:
+      # http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...d318147^1&ofs=1000
+      # use a reasonably large fetch depth
+      git submodule update \
+        --depth=1200
+
+      "${SNAPCRAFT_PART_SRC}"/../../../snap/local/utilities/set-snap-version.bash
+
+    configflags:
+    - --program-suffix=-snapcrafters

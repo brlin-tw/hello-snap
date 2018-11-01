@@ -15,7 +15,6 @@ init(){
 
 	upstream_version="$(
 		git \
-			-C parts/my-app-part/src \
 			describe \
 			--always \
 			--dirty=-d \
@@ -32,9 +31,8 @@ init(){
 			--dirty=-d
 	)"
 
-	printf \
-		-- \
-		'%s' \
+	snapcraftctl \
+		set-version \
 		"${upstream_version}+pkg-${packaging_revision}"
 
 	exit 0
