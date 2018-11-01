@@ -126,6 +126,12 @@ parts:
   # Updated version of git for the --recommend-shallow support in the git-submodule command
   git:
     plugin: nil
+
+    # WORKAROUND: Avoid implicit source `.`
+    # Bug #1776807 “`nil` plugin shouldn't pull anything to the srctre...” : Bugs : Snapcraft
+    # https://bugs.launchpad.net/snapcraft/+bug/1776807
+    override-pull: 'true'
+
     override-stage: |
       set -o errexit
       sudo apt install software-properties-common
