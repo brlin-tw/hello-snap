@@ -21,14 +21,6 @@ Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.
     sudo snap install --channel=edge hello-snapcrafters
     #sudo snap install --channel=beta hello-snapcrafters
     #sudo snap install hello-snapcrafters
-    
-    # Connect the Snap to Required Interfaces #
-    ## _plug_name_: Reasoning of connecting _plug_name_ ##
-    sudo snap connect hello-snapcrafters:_plug_name_
-    
-    # Connect the Snap to Optional Interfaces #
-    ## _plug_name_: Reasoning of connecting _plug_name_ ##
-    sudo snap connect hello-snapcrafters:_plug_name_
 
 ### The Graphical Way
 Browse <https://snapcraft.io/hello-snapcrafters> and follow the instructions.
