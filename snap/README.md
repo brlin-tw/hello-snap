@@ -26,7 +26,7 @@ Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.
 Browse <https://snapcraft.io/hello-snapcrafters> and follow the instructions.
 
 ## What is Working
-* [A list of functionallities that are verified working]
+* Display default greeting
 
 ## What is NOT Working...yet 
 * Internationalization(I18N)
