@@ -124,25 +124,26 @@ parts:
     - -patches
 
   # Updated version of git for the --recommend-shallow support in the git-submodule command
-  git:
-    plugin: nil
+  #git:
+    #plugin: nil
 
     # WORKAROUND: Avoid implicit source `.`
     # Bug #1776807 “`nil` plugin shouldn't pull anything to the srctre...” : Bugs : Snapcraft
     # https://bugs.launchpad.net/snapcraft/+bug/1776807
-    override-pull: 'true'
+    #override-pull: 'true'
 
-    override-stage: |
-      set -o errexit
-      sudo apt install --assume-yes software-properties-common
-      sudo add-apt-repository --yes ppa:git-core/ppa
-      sudo apt update
-      sudo apt install --assume-yes git-core
+    #override-stage: |
+      #set -o errexit
+      #sudo apt install --assume-yes software-properties-common
+      #sudo add-apt-repository --yes ppa:git-core/ppa
+      #sudo apt update
+      #sudo apt install --assume-yes git-core
 
   hello:
     after:
     - assets
-    - git
+    # DISABLED: Originally required for cloning gnulib submodule
+    #- git
 
     source: git://git.savannah.gnu.org/hello.git
     #source: http://ftpmirror.gnu.org/hello/hello-2.10.tar.gz
@@ -174,7 +175,7 @@ parts:
         "${SNAPCRAFT_PART_SRC}"
 
       # gnulib submodule has a LOT of history, use the --recommend-shallow featue of git-submodule to avoid pulling all of the history:
-      # DISABLED: Unfortunately the git server doesn't allow it: error: Server does not allow request for unadvertised object
+      # DISABLED: Unfortunately the git server git.savannah.gnu.org doesn't allow it: (error: Server does not allow request for unadvertised object)
       #git config \
         #--file .gitmodules \
         #submodule.gnulib.shallow \
