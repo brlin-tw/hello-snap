@@ -18,8 +18,7 @@ Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.
 
 ### In Terminal
     # Install Snap #
-    sudo snap install --channel=edge hello-snapcrafters
-    #sudo snap install --channel=beta hello-snapcrafters
+    sudo snap install --channel=beta hello-snapcrafters
     #sudo snap install hello-snapcrafters
 
 ### The Graphical Way
