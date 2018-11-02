@@ -154,6 +154,7 @@ parts:
     plugin: autotools
     build-packages:
     - build-essential
+    - gettext
     - help2man
     - rsync
     - texinfo
