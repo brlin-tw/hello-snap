@@ -189,6 +189,9 @@ parts:
         git://git.savannah.gnu.org/hello.git \
         "${SNAPCRAFT_PART_SRC}"
 
+      # For building stable releases
+      git checkout v2.10
+
       # gnulib submodule has a LOT of history, use the --recommend-shallow featue of git-submodule to avoid pulling all of the history:
       # DISABLED: Unfortunately the git server git.savannah.gnu.org doesn't allow it: (error: Server does not allow request for unadvertised object)
       #git config \
