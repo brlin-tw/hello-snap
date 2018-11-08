@@ -201,11 +201,11 @@ parts:
 
       git submodule init
 
-      # Currently gnulib has about 1050 revisions to the submodule pinned commit:
-      # http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...d318147^1&ofs=1000
+      # Currently gnulib has about 1980 revisions to the v2.10 submodule pinned commit:
+      # http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...e8f86ce9^1&ofs=1000
       # use a reasonably large fetch depth
       git submodule update \
-        --depth=1200
+        --depth=2000
 
       "${SNAPCRAFT_PART_SRC}"/../../../snap/local/utilities/set-snap-version.bash
 
