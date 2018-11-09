@@ -100,7 +100,8 @@ apps:
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
     command: >
       bin/hello-launch
-      "$SNAP"/bin/hello-snapcrafters
+      "${SNAP}"/bin/locales-launch
+      "${SNAP}"/bin/hello-snapcrafters
 
     # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
     # If the packaging target doesn't provide a desktop entry, ignore the `desktop` key and implement a desktop entry in `/snap/gui`
@@ -160,6 +161,20 @@ parts:
     - rsync
     - texinfo
     - wget
+    stage-packages:
+    # For localedef(1)
+    - libc-bin
+
+    # For locale data used by localedef(1)
+    - locales
+
+    # All pre-generated locale data
+    # DISABLED: Lots of duplicate data will be included in snap when this is staged, unless the target machine has no resource to generate them in runtime otherwise not using it
+    #
+    #   Lack of compiled locales breaks gettext based localisation - snapcraft - snapcraft.io
+    #   https://forum.snapcraft.io/t/lack-of-compiled-locales-breaks-gettext-based-localisation/3758
+    #
+    #- locales-all
 
     override-pull: |
       set \
@@ -174,6 +189,9 @@ parts:
         git://git.savannah.gnu.org/hello.git \
         "${SNAPCRAFT_PART_SRC}"
 
+      # For building stable releases
+      #git checkout v2.10
+
       # gnulib submodule has a LOT of history, use the --recommend-shallow feature of git-submodule to avoid pulling all of the history:
       # DISABLED: Unfortunately the git server git.savannah.gnu.org doesn't allow it: (error: Server does not allow request for unadvertised object)
       #git config \
@@ -183,13 +201,17 @@ parts:
 
       git submodule init
 
-      # Currently gnulib has about 1050 revisions to the submodule pinned commit:
-      # http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...d318147^1&ofs=1000
+      # Currently gnulib has about 1980 revisions to the v2.10 submodule pinned commit:
+      # http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...e8f86ce9^1&ofs=1000
       # use a reasonably large fetch depth
       git submodule update \
-        --depth=1200
+        --depth=2000
 
       "${SNAPCRAFT_PART_SRC}"/../../../snap/local/utilities/set-snap-version.bash
 
     configflags:
+    - --datarootdir=/snap/$SNAPCRAFT_PROJECT_NAME/current/share
     - --program-suffix=-snapcrafters
+
+    organize:
+      snap/$SNAPCRAFT_PROJECT_NAME/current: /

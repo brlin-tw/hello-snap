@@ -18,17 +18,19 @@ Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.
 
 ### In Terminal
     # Install Snap #
-    sudo snap install --channel=beta hello-snapcrafters
-    #sudo snap install hello-snapcrafters
+    sudo snap install hello-snapcrafters
 
 ### The Graphical Way
 Browse <https://snapcraft.io/hello-snapcrafters> and follow the instructions.
 
 ## What is Working
 * Display default greeting
-
-## What is NOT Working...yet 
+* Display traditional greeting
+* Display custom greeting
 * Internationalization(I18N)
+
+## What is NOT Working...yet
+None so far.
 
 Check out the [issue tracker](https://github.com/Lin-Buo-Ren/hello-snap/issues) for more known issues.
 
