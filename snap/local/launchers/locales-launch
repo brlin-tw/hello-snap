@@ -52,7 +52,6 @@ if ! [ -d "${LOCPATH}"/en_US.utf8 ]; then
 				<<< "${locale_variable}"
 		)"
 
-
 		if [ ! -d "${LOCPATH}"/"${locale}".UTF-8 ]; then
 			printf -- \
 				'snap: locales-launch: Data of %s locale not found, generating, please wait...\n' \
