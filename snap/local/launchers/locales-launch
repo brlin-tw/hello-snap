@@ -61,7 +61,8 @@ if ! [ -d "${LOCPATH}"/en_US.utf8 ]; then
 			localedef \
 				--charmap=UTF-8 \
 				--inputfile="${locale}" \
-				"${LOCPATH}"/"${locale}".UTF-8
+				"${LOCPATH}"/"${locale}".UTF-8 \
+				|| true # Don't errexit when fail (ret=1, 4)
 		fi
 
 		unset -n locale_variable
