@@ -189,8 +189,23 @@ parts:
         git://git.savannah.gnu.org/hello.git \
         "${SNAPCRAFT_PART_SRC}"
 
-      # For building stable releases
-      #git checkout v2.10
+      last_committed_tag="$(
+        git tag \
+          | sed 's/^v//' \
+          | sort --version-sort \
+          | tail --lines=1
+      )"
+
+      last_released_tag="$(
+        snap info "${SNAPCRAFT_PROJECT_NAME}" \
+          | awk '$1 == "stable:" { print $2 }' \
+          | cut --delimiter=+ --fields=1
+      )"
+
+      # If the latest tag from the upstream project has not been released to the stable channel, build that tag instead of master.
+      if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
+        git checkout "${last_committed_tag}"
+      fi
 
       # gnulib submodule has a LOT of history, use the --recommend-shallow feature of git-submodule to avoid pulling all of the history:
       # DISABLED: Unfortunately the git server git.savannah.gnu.org doesn't allow it: (error: Server does not allow request for unadvertised object)
