@@ -207,7 +207,7 @@ parts:
       git submodule update \
         --depth=2000
 
-      "${SNAPCRAFT_PART_SRC}"/../../../snap/local/utilities/set-snap-version.bash
+      "${SNAPCRAFT_STAGE}"/utilities/set-snap-version.bash
 
     configflags:
     - --datarootdir=/snap/$SNAPCRAFT_PROJECT_NAME/current/share
