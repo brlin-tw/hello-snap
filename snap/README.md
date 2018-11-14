@@ -21,7 +21,7 @@ Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.
     sudo snap install hello-snapcrafters
 
 ### The Graphical Way
-Browse <https://snapcraft.io/hello-snapcrafters> and follow the instructions.
+[![Get it from the Snap Store](https://cdn.staticaly.com/gh/snapcore/snap-store-badges/f77f7972/EN/%5BEN%5D-snap-store-black.png)](https://snapcraft.io/hello-snapcrafters)
 
 ## What is Working
 * Display default greeting
