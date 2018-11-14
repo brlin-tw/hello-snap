@@ -176,53 +176,7 @@ parts:
     #
     #- locales-all
 
-    override-pull: |
-      set \
-        -o errexit \
-        -o nounset
-
-      #DISABLED: Git submodule pulls down too much history, re-implement the pull step until the submodule fetch depth is customizable
-      #snapcraftctl pull
-
-      git clone \
-        --depth=50 \
-        git://git.savannah.gnu.org/hello.git \
-        "${SNAPCRAFT_PART_SRC}"
-
-      last_committed_tag="$(
-        git tag \
-          | sed 's/^v//' \
-          | sort --version-sort \
-          | tail --lines=1
-      )"
-
-      last_released_tag="$(
-        snap info "${SNAPCRAFT_PROJECT_NAME}" \
-          | awk '$1 == "stable:" { print $2 }' \
-          | cut --delimiter=+ --fields=1
-      )"
-
-      # If the latest tag from the upstream project has not been released to the stable channel, build that tag instead of master.
-      if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
-        git checkout "${last_committed_tag}"
-      fi
-
-      # gnulib submodule has a LOT of history, use the --recommend-shallow feature of git-submodule to avoid pulling all of the history:
-      # DISABLED: Unfortunately the git server git.savannah.gnu.org doesn't allow it: (error: Server does not allow request for unadvertised object)
-      #git config \
-        #--file .gitmodules \
-        #submodule.gnulib.shallow \
-        #true
-
-      git submodule init
-
-      # Currently gnulib has about 1980 revisions to the v2.10 submodule pinned commit:
-      # http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...e8f86ce9^1&ofs=1000
-      # use a reasonably large fetch depth
-      git submodule update \
-        --depth=2000
-
-      "${SNAPCRAFT_STAGE}"/utilities/set-snap-version.bash
+    override-pull: '"${SNAPCRAFT_STAGE}"/utilities/parts-hello-override-pull.bash'
 
     configflags:
     - --datarootdir=/snap/$SNAPCRAFT_PROJECT_NAME/current/share
