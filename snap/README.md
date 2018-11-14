@@ -42,4 +42,3 @@ Anything not mentioned in the "What is Working" and "What is NOT Working...yet" 
   <https://github.com/Lin-Buo-Ren/hello-snap/issues>
 * You may also post on the Snapcraft Forum, under the `snap` topic category:  
   <https://forum.snapcraft.io/c/snap>
-

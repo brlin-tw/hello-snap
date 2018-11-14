@@ -13,4 +13,3 @@ trim_trailing_whitespace = false
 
 [*.yaml]
 indent_style = space
-
