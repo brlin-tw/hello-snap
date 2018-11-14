@@ -1,6 +1,8 @@
 # Unofficial Snap Packaging for GNU Hello
 This is the unofficial snap packaging for GNU Hello, [Snaps are universal Linux packages](https://snapcraft.io).
 
+[![Continuous Integration Status](https://travis-ci.com/Lin-Buo-Ren/hello-snap.svg?branch=master)](https://travis-ci.com/Lin-Buo-Ren/hello-snap)
+
 Refer [snap/README.md](snap/README.md) for user-oriented information.
 
 ## Remaining Tasks

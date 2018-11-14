@@ -6,7 +6,7 @@
 ![(Placeholder) Icon of GNU Hello](https://cdn.rawgit.com/Lin-Buo-Ren/snapcrafters-template-plus/bea3bc56/snap/gui/my-awesome-app.png "(Placeholder) Icon of GNU Hello")
 
 **This is the unofficial snap for GNU Hello**, *"A familiar, friendly greeting(also a demonstration of snap packaging)"*. It works on Ubuntu, Fedora, Debian, and other major Linux distributions.
-[![Build Status Badge of the `hello-snapcrafters` Snap](https://build.snapcraft.io/badge/Lin-Buo-Ren/hello-snap.svg "Build Status of the `hello-snapcrafters` snap")](https://build.snapcraft.io/user/Lin-Buo-Ren/hello-snap) [![Build Status](https://travis-ci.com/Lin-Buo-Ren/hello-snap.svg?branch=master)](https://travis-ci.com/Lin-Buo-Ren/hello-snap)
+[![Build Status Badge of the `hello-snapcrafters` Snap](https://build.snapcraft.io/badge/Lin-Buo-Ren/hello-snap.svg "Build Status of the `hello-snapcrafters` snap")](https://build.snapcraft.io/user/Lin-Buo-Ren/hello-snap)
 
 ![Screenshot of the Snapped Application](local/screenshots/screenshot.png "Screenshot of the Snapped Application")
 
