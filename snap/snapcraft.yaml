@@ -152,7 +152,7 @@ parts:
     #source: http://ftpmirror.gnu.org/hello/hello-2.10.tar.gz
 
     #source-type:
-    #source-tag:
+    source-tag: v2.10
     source-depth: 50
 
     plugin: autotools
