@@ -21,7 +21,7 @@ init(){
 	git clone \
 		--depth=50 \
 		git://git.savannah.gnu.org/hello.git \
-		"${SNAPCRAFT_PART_SRC}"
+		.
 
 	last_committed_tag="$(
 		git tag \
