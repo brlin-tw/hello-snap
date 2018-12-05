@@ -38,7 +38,7 @@ init(){
 
 	# If the latest tag from the upstream project has not been released to the stable channel, build that tag instead of master.
 	if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
-		git checkout "${last_committed_tag}"
+		git checkout v"${last_committed_tag}"
 	fi
 
 	unset \
