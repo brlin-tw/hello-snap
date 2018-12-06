@@ -11,6 +11,8 @@ set \
 init(){
 	local \
 		all_upstream_release_tags \
+		checkout_mode=tip \
+		clone_depth \
 		last_upstream_release_version \
 		last_snapped_release_version \
 		upstream_version \
@@ -57,6 +59,7 @@ init(){
 
 	# If the latest tag from the upstream project has not been released to the stable channel, build that tag instead of the development snapshot and publish it in the edge channel.
 	if [ "${last_upstream_release_version}" != "${last_snapped_release_version}" ]; then
+		checkout_mode=release
 		git checkout v"${last_upstream_release_version}"
 	fi
 
@@ -74,11 +77,27 @@ init(){
 
 	git submodule init
 
-	# Currently gnulib has about 1980 revisions to the v2.10 submodule pinned commit:
-	# http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...e8f86ce9^1&ofs=1000
-	# use a reasonably large fetch depth
+	# Determine reasonable clone depth
+	case "${checkout_mode}" in
+		tip)
+			# 1070 revisions to pinned commit
+			# http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...d318147%5e1&ofs=1050
+			clone_depth=1100
+		;;
+		release)
+			# Currently gnulib has about 1980 revisions to the v2.10 submodule pinned commit:
+			# http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...e8f86ce9^1&ofs=1000
+			clone_depth=2000
+		;;
+		*)
+			printf -- \
+				'pull: Error: Invalid submodule checkout_mode.\n' >&2
+			exit 1
+		;;
+	esac
+
 	git submodule update \
-		--depth=2000
+		--depth="${clone_depth}"
 
 	upstream_version="$(
 		git \
