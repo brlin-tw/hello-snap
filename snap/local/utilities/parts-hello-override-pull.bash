@@ -111,6 +111,7 @@ init(){
 
 	packaging_revision="$(
 		git \
+			-C .. \
 			describe \
 			--abbrev=4 \
 			--always \
