@@ -86,9 +86,9 @@ init(){
 			clone_depth=1100
 		;;
 		release)
-			# Currently gnulib has about 1980 revisions to the v2.10 submodule pinned commit:
+			# Currently gnulib has about 2002 revisions to the v2.10 submodule pinned commit:
 			# http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...e8f86ce9^1&ofs=2000
-			clone_depth=2000
+			clone_depth=2200
 		;;
 		*)
 			printf -- \
