@@ -65,7 +65,7 @@ init(){
 		last_upstream_release_version \
 		last_snapped_release_version
 
-	# gnulib submodule has a LOT of history, use the --recommend-shallow feature of git-submodule to avoid pulling all of the history:
+	# gnulib submodule has LOTS of history, use the --recommend-shallow feature of git-submodule to avoid pulling all of the history:
 	# DISABLED: Unfortunately the git server git.savannah.gnu.org doesn't allow it: (error: Server does not allow request for unadvertised object)
 	#git config \
 		#--file .gitmodules \
