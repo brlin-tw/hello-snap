@@ -11,7 +11,7 @@ set \
 init(){
 	local \
 		all_upstream_release_tags \
-		checkout_mode=release \
+		checkout_mode=tip \
 		clone_depth \
 		last_upstream_release_version \
 		last_snapped_release_version \
