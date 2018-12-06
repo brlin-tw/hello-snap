@@ -58,7 +58,8 @@ init(){
 	)"
 
 	# If the latest tag from the upstream project has not been released to the stable channel, build that tag instead of the development snapshot and publish it in the edge channel.
-	if [ "${last_upstream_release_version}" != "${last_snapped_release_version}" ]; then
+	if [ "${last_upstream_release_version}" != "${last_snapped_release_version}" ] \
+		|| [ "${checkout_mode}" = release ]; then
 		checkout_mode=release
 		git checkout v"${last_upstream_release_version}"
 	fi
