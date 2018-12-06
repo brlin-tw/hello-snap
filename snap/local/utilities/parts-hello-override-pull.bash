@@ -87,7 +87,7 @@ init(){
 		;;
 		release)
 			# Currently gnulib has about 1980 revisions to the v2.10 submodule pinned commit:
-			# http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...e8f86ce9^1&ofs=1000
+			# http://git.savannah.gnu.org/cgit/gnulib.git/log/?qt=range&q=master...e8f86ce9^1&ofs=2000
 			clone_depth=2000
 		;;
 		*)
