@@ -100,10 +100,8 @@ apps:
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
     command: >
       bin/hello-launch
+      "${SNAP}"/bin/gettext-launch
       "${SNAP}"/bin/hello-snapcrafters
-    environment:
-      LANG: C.UTF-8
-      LC_ALL: C.UTF-8
 
     # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
     # If the packaging target doesn't provide a desktop entry, ignore the `desktop` key and implement a desktop entry in `/snap/gui`
@@ -125,6 +123,8 @@ parts:
     prime:
     - -utilities
     - -patches
+
+  gettext-launch:
 
   hello:
     after:
