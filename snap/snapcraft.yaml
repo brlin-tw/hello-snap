@@ -100,7 +100,7 @@ apps:
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
     command: >
       bin/hello-launch
-      "${SNAP}"/bin/locales-launch
+      "${SNAP}"/bin/gettext-launch
       "${SNAP}"/bin/hello-snapcrafters
 
     # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
@@ -124,7 +124,7 @@ parts:
     - -utilities
     - -patches
 
-  locales-launch:
+  gettext-launch:
 
   hello:
     after:
