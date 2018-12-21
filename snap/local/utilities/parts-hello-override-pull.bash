@@ -18,14 +18,7 @@ init(){
 		upstream_version \
 		packaging_revision
 
-	#DISABLED: Git submodule pulls down too much history, re-implement the pull step until the submodule fetch depth is customizable
-	#snapcraftctl pull
-
-	git clone \
-		--depth=50 \
-		git://git.savannah.gnu.org/hello.git \
-		.
-
+	snapcraftctl pull
 	if \
 		! \
 		git describe \

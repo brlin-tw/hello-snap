@@ -148,6 +148,8 @@ parts:
     # DISABLED: Originally required for cloning gnulib submodule
     #- git
 
+    source: git://git.savannah.gnu.org/hello.git
+    source-depth: 50
     override-pull: '"${SNAPCRAFT_STAGE}"/utilities/parts-hello-override-pull.bash'
     build-packages:
     - build-essential
