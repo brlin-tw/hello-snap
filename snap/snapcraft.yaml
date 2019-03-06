@@ -51,6 +51,9 @@ icon: snap/gui/hello-snapcrafters.png
 #version-script: ./snap/local/utilities/set-snap-version.bash
 #version-script: git -C parts/my-app-part/src describe --always --dirty --tags
 
+# The environment this snap is based on
+base: core18
+
 # Extracting information from sources in snapcraft parts - doc
 # https://forum.snapcraft.io/t/extracting-information-from-sources-in-snapcraft-parts/4642
 adopt-info: hello
@@ -100,7 +103,7 @@ apps:
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
     command: >
       bin/hello-launch
-      "${SNAP}"/bin/gettext-launch
+      "${SNAP}"/bin/locales-launch
       "${SNAP}"/bin/hello-snapcrafters
 
     # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
@@ -124,7 +127,25 @@ parts:
     - -utilities
     - -patches
 
-  gettext-launch:
+  locales-launch:
+    plugin: nil
+    stage-snaps:
+    - locales-launch
+
+    stage-packages:
+    # For localedef(1)
+    - libc-bin
+
+    # For locale data used by localedef(1)
+    - locales
+
+    # All pre-generated locale data
+    # DISABLED: Lots of duplicate data will be included in snap when this is staged, unless the target machine has no resource to generate them in runtime otherwise not using it
+    #
+    #   Lack of compiled locales breaks gettext based localisation - snapcraft - snapcraft.io
+    #   https://forum.snapcraft.io/t/lack-of-compiled-locales-breaks-gettext-based-localisation/3758
+    #
+    #- locales-all
 
   hello:
     after:
