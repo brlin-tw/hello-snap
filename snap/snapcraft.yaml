@@ -152,6 +152,7 @@ parts:
     build-packages:
     - build-essential
     - gettext
+    - gperf
     - help2man
     - rsync
     - texinfo
