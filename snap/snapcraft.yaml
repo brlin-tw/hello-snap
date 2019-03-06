@@ -100,7 +100,7 @@ apps:
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
     command: >
       bin/hello-launch
-      "${SNAP}"/bin/locales-launch
+      "${SNAP}"/bin/gettext-launch
       "${SNAP}"/bin/hello-snapcrafters
 
     # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
@@ -124,30 +124,14 @@ parts:
     - -utilities
     - -patches
 
-  # Updated version of git for the --recommend-shallow support in the git-submodule command
-  #git:
-    #plugin: nil
-
-    # WORKAROUND: Avoid implicit source `.`
-    # Bug #1776807 “`nil` plugin shouldn't pull anything to the srctre...” : Bugs : Snapcraft
-    # https://bugs.launchpad.net/snapcraft/+bug/1776807
-    #override-pull: 'true'
-
-    #override-stage: |
-      #set -o errexit
-      #sudo apt install --assume-yes software-properties-common
-      #sudo add-apt-repository --yes ppa:git-core/ppa
-      #sudo apt update
-      #sudo apt install --assume-yes git-core
-
-  locales-launch:
+  gettext-launch:
 
   hello:
     after:
     - assets
-    # DISABLED: Originally required for cloning gnulib submodule
-    #- git
 
+    source: git://git.savannah.gnu.org/hello.git
+    source-depth: 50
     override-pull: '"${SNAPCRAFT_STAGE}"/utilities/parts-hello-override-pull.bash'
     build-packages:
     - build-essential
