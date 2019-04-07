@@ -98,25 +98,6 @@ grade: stable
 
 #slots:
 
-# Apps that are exposed by the snap package
-# If the _app_name_ is identical with the _snap_name_ it can be directly run
-# with `_snap_name_` or `snap run _snap_name_` commands, otherwise it can only be run
-# via `_snap_name_._app_name_` or `snap run _snap_name_._app_name_`
-apps:
-  hello-snapcrafters:
-    # The environment adapter style to use, `command-chain` is only supported by the `full` adapter
-    adapter: full
-
-    # The command to run the application, the value should be a *relative path* to an executable file rooted from the `prime` directory
-    command: bin/hello-snapcrafters
-    command-chain:
-    - bin/locales-launch
-    - bin/hello-launch
-
-    # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
-    # If the packaging target doesn't provide a desktop entry, ignore the `desktop` key and implement a desktop entry in `/snap/gui`
-    #desktop: share/applications/hello.desktop
-
 # Run `snapcraft help sources` for supported keywords on pulling a part's source ingredients
 # Run `snapcraft plugins` for supported build helper plugins
 # Run `snapcraft help plugins` for supported keywords on building a part
@@ -177,3 +158,22 @@ parts:
 
     organize:
       snap/$SNAPCRAFT_PROJECT_NAME/current: /
+
+# Apps that are exposed by the snap package
+# If the _app_name_ is identical with the _snap_name_ it can be directly run
+# with `_snap_name_` or `snap run _snap_name_` commands, otherwise it can only be run
+# via `_snap_name_._app_name_` or `snap run _snap_name_._app_name_`
+apps:
+  hello-snapcrafters:
+    # The environment adapter style to use, `command-chain` is only supported by the `full` adapter
+    adapter: full
+
+    # The command to run the application, the value should be a *relative path* to an executable file rooted from the `prime` directory
+    command: bin/hello-snapcrafters
+    command-chain:
+    - bin/locales-launch
+    - bin/hello-launch
+
+    # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
+    # If the packaging target doesn't provide a desktop entry, ignore the `desktop` key and implement a desktop entry in `/snap/gui`
+    #desktop: share/applications/hello.desktop
