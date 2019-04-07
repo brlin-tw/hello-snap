@@ -108,28 +108,6 @@ parts:
     prime:
     - -*
 
-  # Stage snap for fixing the glibc locales(and gnu gettext I18N support)
-  # https://forum.snapcraft.io/t/the-locales-launch-stage-snap/10296
-  locales-launch:
-    plugin: nil
-    stage-snaps:
-    - locales-launch
-
-    stage-packages:
-    # For localedef(1)
-    - libc-bin
-
-    # For locale data used by localedef(1)
-    - locales
-
-    # All pre-generated locale data
-    # DISABLED: Lots of duplicate data will be included in snap when this is staged, unless the target machine has no resource to generate them in runtime otherwise not using it
-    #
-    #   Lack of compiled locales breaks gettext based localisation - snapcraft - snapcraft.io
-    #   https://forum.snapcraft.io/t/lack-of-compiled-locales-breaks-gettext-based-localisation/3758
-    #
-    #- locales-all
-
   # Selective-checkout: Check out the tagged release revision if it isn't promoted to the stable channel
   # https://forum.snapcraft.io/t/selective-checkout-check-out-the-tagged-release-revision-if-it-isnt-promoted-to-the-stable-channel/10617
   selective-checkout:
@@ -180,8 +158,12 @@ apps:
     # The command to run the application, the value should be a *relative path* to an executable file rooted from the `prime` directory
     command: bin/hello-snapcrafters
     command-chain:
-    - bin/locales-launch
     - bin/hello-launch
+
+    environment:
+      # Ubuntu Core only include C locales
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
 
     # If the providing part of the app. has a desktop entry, specify its path relative to the `prime` directory.
     # If the packaging target doesn't provide a desktop entry, ignore the `desktop` key and implement a desktop entry in `/snap/gui`
