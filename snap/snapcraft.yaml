@@ -141,7 +141,6 @@ parts:
     plugin: autotools
     configflags:
     - --datarootdir=/snap/$SNAPCRAFT_PROJECT_NAME/current/share
-    - --program-suffix=-snapcrafters
 
     organize:
       snap/$SNAPCRAFT_PROJECT_NAME/current: /
@@ -156,7 +155,7 @@ apps:
     adapter: full
 
     # The command to run the application, the value should be a *relative path* to an executable file rooted from the `prime` directory
-    command: bin/hello-snapcrafters
+    command: bin/hello
     command-chain:
     - bin/hello-launch
 
