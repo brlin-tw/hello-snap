@@ -46,8 +46,8 @@ license: GPL-3.0
 # being accidentally interpreted as a YAML non-string(like '1', '1.2').
 # http://yaml.org/type
 # https://arp242.net/weblog/yaml_probably_not_so_great_after_all.html#surprising-behaviour
-# NOTE: If `version` and `adopt-info` key co-exist, the `version` key takes precedence
-#version: determined-by-adopt-info
+# NOTE: This key is mutual exclusive with the `adopt-info` key
+#version: Derived from the part specified by the `adopt-info` property
 
 # (OPTIONAL) The version string can also be dynamically determined via scripting
 # , in this case the value of the `version` key will be ignored (but the key is
