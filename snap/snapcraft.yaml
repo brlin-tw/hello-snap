@@ -130,12 +130,27 @@ parts:
     #
     #- locales-all
 
+  # Selective-checkout: Check out the tagged release revision if it isn't promoted to the stable channel
+  # https://forum.snapcraft.io/t/selective-checkout-check-out-the-tagged-release-revision-if-it-isnt-promoted-to-the-stable-channel/10617
+  selective-checkout:
+    plugin: nil
+    build-packages:
+    - git
+    stage-snaps:
+    - selective-checkout
+
   hello:
     after:
+    - selective-checkout
 
     source: git://git.savannah.gnu.org/hello.git
     source-depth: 50
-    override-pull: '"${SNAPCRAFT_STAGE}"/utilities/parts-hello-override-pull.bash'
+    override-pull: |
+      set -o nounset
+      snapcraftctl pull
+      "${SNAPCRAFT_STAGE}"/scriptlets/selective-checkout \
+        --append-packaging-revision
+
     build-packages:
     - build-essential
     - gettext
