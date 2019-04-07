@@ -57,7 +57,7 @@ license: GPL-3.0
 #version-script: git -C parts/my-app-part/src describe --always --dirty --tags
 
 # The environment this snap is based on
-base: core18
+base: core
 
 # Extracting information from sources in snapcraft parts - doc
 # https://forum.snapcraft.io/t/extracting-information-from-sources-in-snapcraft-parts/4642
