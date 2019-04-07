@@ -13,7 +13,6 @@
 #   https://forum.snapcraft.io/c/doc
 # For support refer to the snapcraft section in the Snapcraft Forum:
 # https://forum.snapcraft.io/c/snapcraft
-
 name: hello-snapcrafters
 summary: A familiar, friendly greeting(also a demonstration of snap packaging)
 description: |
