@@ -116,6 +116,8 @@ parts:
     - git
     stage-snaps:
     - selective-checkout
+    prime:
+    - -*
 
   hello:
     after:
