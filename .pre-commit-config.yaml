@@ -3,17 +3,17 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v2.0.0
+  rev: v4.0.1
   hooks:
   - id: check-added-large-files
   - id: check-byte-order-marker
   - id: check-executables-have-shebangs
   - id: end-of-file-fixer
 - repo: https://github.com/jumanjihouse/pre-commit-hooks
-  rev: 1.6.0
+  rev: 2.1.5
   hooks:
   - id: shellcheck
 - repo: https://github.com/adrienverge/yamllint.git
-  rev: master
+  rev: v1.26.3
   hooks:
   - id: yamllint
